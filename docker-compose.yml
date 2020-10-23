@@ -1,0 +1,8 @@
+version: "3"
+services:
+  hapi-fhir-esus-ab:
+    build: .
+    command: mvn jetty:run
+    restart: on-failure
+    ports:
+      - "8081:8080"
