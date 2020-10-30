@@ -37,18 +37,26 @@ public final class ControllerPatient extends Controller<Patient> {
 		HashMap<String, BaseParam> translatedValues = iTranslator.translate(params);
 		HashMap<String, BaseParam> mappedColumns = iMapping.map(translatedValues);
 		
+		BaseParam paramCPF;
 		String host = null, port = null, method = null, username = null, password = null, cpf = null;
 		
 		host = CADSUSProperties.getURL();
 		method = "POST";
 		username = CADSUSProperties.getUSERNAME();
 		password = CADSUSProperties.getPASSWORD();
-		cpf = UtilBaseParam.toValue(params.get(params.get(Patient.IDENTIFIER)));
+		paramCPF = params.get(Patient.SP_IDENTIFIER);
+		cpf = UtilBaseParam.toValue(paramCPF);
 		
 		Request request = new RequestIHEPDQ(host, port, method, username, password, cpf, null);
 		
+		String response = null;
+		Patient patientResponse = null;
+		
 		try {
-			retVal.add(iParser.parse(iClient.send(request)));
+			response = iClient.send(request);
+			patientResponse = iParser.parse(response);
+			
+			retVal.add(patientResponse);
 		} catch (Exception e) {
 		}
 		

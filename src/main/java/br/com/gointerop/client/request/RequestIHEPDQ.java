@@ -95,7 +95,7 @@ public class RequestIHEPDQ implements Request {
 		sb.append("		               <responsePriorityCode code=\"I\"/>");
 		sb.append("		               <parameterList>");
 		
-		if(this.cns != null || !this.cns.equals("")) {
+		if(this.cns != null && !this.cns.equals("")) {
 			
 			sb.append("		                  <livingSubjectId>");
 			sb.append("		                     <value root=\"2.16.840.1.113883.13.236\" extension=\""+this.cns+"\"/>");
@@ -104,10 +104,10 @@ public class RequestIHEPDQ implements Request {
 		
 		}
 		
-		if(this.cpf != null || !this.cpf.equals("")) {
+		if(this.cpf != null && !this.cpf.equals("")) {
 			
 			sb.append("		                  <livingSubjectId>");
-			sb.append("		                     <value root=\"2.16.840.1.113883.13.236\" extension=\""+this.cns+"\"/>");
+			sb.append("		                     <value root=\"2.16.840.1.113883.13.237\" extension=\""+this.cpf+"\"/>");
 			sb.append("		                     <semanticsText>LivingSubject.id</semanticsText>");
 			sb.append("		                  </livingSubjectId>");
 		
